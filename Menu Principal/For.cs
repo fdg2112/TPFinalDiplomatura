@@ -8,6 +8,95 @@ namespace Menu_Principal
 {
     public static class For
     {
+        public static void SubMenu()
+        {
+            bool stop = false;
+            while (!stop)
+            {
+                Console.Clear();
+                Console.WriteLine(@"
+       Ejercicios de Repetir - Hasta:
+    ---------------------------------------------
+        1 - Ejercicio 1     11 - Ejercicio 11
+        2 - Ejercicio 2     12 - Ejercicio 12
+        3 - Ejercicio 3     13 - Ejercicio 13
+        4 - Ejercicio 4     14 - Ejercicio 14
+        5 - Ejercicio 5     15 - Ejercicio 15
+        6 - Ejercicio 6     16 - Ejercicio 16
+        7 - Ejercicio 7     17 - Ejercicio 17
+        8 - Ejercicio 8     18 - Ejercicio 18
+        9 - Ejercicio 9     19 - Ejercicio 19
+        10 - Ejercicio 10   20 - Ejercicio 20
+    ---------------------------------------------
+        Ingrese S para Salir al Menú Anterior
+    ---------------------------------------------
+                ");
+                Console.Write("   Ingrese la opción del ejercicio a ejecutar: ");
+                string? opcion = Console.ReadLine();
+                if (opcion == null) opcion = "";
+                switch (opcion.ToLower())
+                {
+                    case "1":
+                        Console.Clear();
+                        Ejercicio1();
+                        break;
+                    case "2":
+                        Console.Clear();
+                        Ejercicio2();
+                        break;
+                    case "3":
+                        Console.Clear();
+                        Ejercicio3();
+                        break;
+                    case "4":
+                        Console.Clear();
+                        Ejercicio4();
+                        break;
+                    case "5":
+                        Console.Clear();
+                        Ejercicio5();
+                        break;
+                    case "6":
+                        Console.Clear();
+                        Ejercicio6();
+                        break;
+                    case "7":
+                        Console.Clear();
+                        Ejercicio7();
+                        break;
+                    case "8":
+                        Console.Clear();
+                        Ejercicio8();
+                        break;
+                    case "9":
+                        Console.Clear();
+                        Ejercicio9();
+                        break;
+                    case "10":
+                        Console.Clear();
+                        Ejercicio10();
+                        break;
+                    case "s":
+                        stop = true;
+                        break;
+                    default:
+                        Console.Clear();
+                        Console.WriteLine(@"
+    ------------------------------------------------------------
+    
+        Opción incorrecta. Presione una tecla para continuar.
+
+    ------------------------------------------------------------
+                        ");
+                        Console.ReadKey();
+                        break;
+                }
+            }
+            Console.WriteLine(@"
+                ....VOLVIENDO AL MENÚ PRINCIPAL....
+            ");
+            Thread.Sleep(1000);
+        }
     }
 }
 /*

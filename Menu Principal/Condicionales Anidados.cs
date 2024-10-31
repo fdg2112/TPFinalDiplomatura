@@ -18,11 +18,16 @@ namespace Menu_Principal
                 Console.WriteLine(@"
        Ejercicios de Condicionales Anidados:
     ---------------------------------------------
-        1 - Ejercicio 1     6 - Ejercicio 6
-        2 - Ejercicio 2     7 - Ejercicio 7
-        3 - Ejercicio 3     8 - Ejercicio 8
-        4 - Ejercicio 4     9 - Ejercicio 9
-        5 - Ejercicio 5     10 - Ejercicio 10
+        1 - Ejercicio 1     11 - Ejercicio 11
+        2 - Ejercicio 2     12 - Ejercicio 12
+        3 - Ejercicio 3     13 - Ejercicio 13
+        4 - Ejercicio 4     14 - Ejercicio 14
+        5 - Ejercicio 5     15 - Ejercicio 15
+        6 - Ejercicio 6     16 - Ejercicio 16
+        7 - Ejercicio 7     17 - Ejercicio 17
+        8 - Ejercicio 8     18 - Ejercicio 18
+        9 - Ejercicio 9     19 - Ejercicio 19
+        10 - Ejercicio 10   20 - Ejercicio 20
     ---------------------------------------------
         Ingrese S para Salir al Menú Anterior
     ---------------------------------------------
@@ -212,186 +217,424 @@ namespace Menu_Principal
         static void Ejercicio4()
         {
             Console.WriteLine(@"
-
-
-            ");
-
+    4.4. Escribe un programa que lea un número y determine si es positivo, negativo o cero.
+    Si es positivo, determinar si es par o impar.
+        ");
+            bool validInput = false;
+            while (!validInput)
+            {
+                try
+                {
+                    Console.Write("Ingrese un número: ");
+                    string? input = Console.ReadLine();
+                    if (string.IsNullOrWhiteSpace(input)) throw new ArgumentNullException("", "No se ingresó ningún valor. Intente nuevamente.");
+                    if (!int.TryParse(input, out int number)) throw new FormatException("La entrada no es un número válido. Intente nuevamente.");
+                    if (number > 0)
+                    {
+                        Console.Write("Es Positivo");
+                        if (number % 2 == 0) Console.WriteLine(" y es par...");
+                        else Console.WriteLine(" y es impar...");
+                    }
+                    else if (number < 0) Console.WriteLine("Es Negativo");
+                    else Console.WriteLine("Es Cero");
+                    validInput = true;
+                }
+                catch (Exception ex) { Console.WriteLine("Ocurrió un error inesperado: " + ex.Message); }
+            }
             Console.WriteLine(@"
 
-        ....VOLVIENDO AL MENÚ....
+    ....VOLVIENDO AL MENÚ....
 
-            ");
+        ");
             Thread.Sleep(5000);
         }
 
         static void Ejercicio5()
         {
             Console.WriteLine(@"
-
-
-            ");
-
+    4.5. Escribe un programa que lea una letra y determine si es una vocal o consonante,
+    y si es mayúscula o minúscula.
+        ");
+            bool validInput = false;
+            while (!validInput)
+            {
+                try
+                {
+                    Console.Write("Ingrese una letra: ");
+                    char letter = Console.ReadKey().KeyChar;
+                    Console.WriteLine();
+                    if (!char.IsLetter(letter)) throw new FormatException("No es una letra. Intente nuevamente.");
+                    if ("aeiou".Contains(char.ToLower(letter))) Console.WriteLine(char.IsUpper(letter) ? "Es una Vocal Mayúscula" : "Es una Vocal Minúscula");
+                    else Console.WriteLine(char.IsUpper(letter) ? "Es una Consonante Mayúscula" : "Es una Consonante Minúscula");
+                    validInput = true;
+                }
+                catch (Exception ex) { Console.WriteLine("Ocurrió un error inesperado: " + ex.Message); }
+            }
             Console.WriteLine(@"
 
-        ....VOLVIENDO AL MENÚ....
+    ....VOLVIENDO AL MENÚ....
 
-            ");
+        ");
             Thread.Sleep(5000);
         }
         static void Ejercicio6()
         {
             Console.WriteLine(@"
+    4.6. Escribe un programa que lea el precio de un producto y determine si es caro, barato o regular.
+    • Barato: menos de 20
+    • Regular: entre 20 y 50
+    • Caro: más de 50
+        ");
+            bool validInput = false;
+            while (!validInput)
+            {
+                try
+                {
+                    Console.Write("Ingrese el precio del producto: ");
+                    string? input = Console.ReadLine();
+                    if (string.IsNullOrWhiteSpace(input)) throw new ArgumentNullException("", "No se ingresó ningún valor. Intente nuevamente.");
+                    if (!float.TryParse(input, out float price)) throw new FormatException("La entrada no es un número válido. Intente nuevamente.");
+                    if (price < 0) throw new ArgumentOutOfRangeException("", "El precio no puede ser negativo. Intente nuevamente.");
+                    if (price < 20) Console.WriteLine("Barato");
+                    else if (price <= 50) Console.WriteLine("Regular");
+                    else Console.WriteLine("Caro");
 
-
-            ");
-
+                    validInput = true;
+                }
+                catch (Exception ex) { Console.WriteLine("Ocurrió un error inesperado: " + ex.Message); }
+            }
             Console.WriteLine(@"
 
-        ....VOLVIENDO AL MENÚ....
+    ....VOLVIENDO AL MENÚ....
 
-            ");
+        ");
             Thread.Sleep(5000);
         }
+
         static void Ejercicio7()
         {
             Console.WriteLine(@"
-
-
-            ");
-
+    4.7. Escribe un programa que lea tres números e imprima el mayor de ellos.
+        ");
+            bool validInput = false;
+            while (!validInput)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese tres números:");
+                    string? input1 = Console.ReadLine();
+                    string? input2 = Console.ReadLine();
+                    string? input3 = Console.ReadLine();
+                    if (string.IsNullOrWhiteSpace(input1) || string.IsNullOrWhiteSpace(input2) || string.IsNullOrWhiteSpace(input3))
+                        throw new ArgumentNullException("", "No se ingresó ningún valor. Intente nuevamente.");
+                    if (!int.TryParse(input1, out int num1) || !int.TryParse(input2, out int num2) || !int.TryParse(input3, out int num3))
+                        throw new FormatException("La entrada no es un número válido. Intente nuevamente.");
+                    int max = num1;
+                    if (num2 > max) max = num2;
+                    if (num3 > max) max = num3;
+                    Console.WriteLine($"El mayor es: {max}");
+                    validInput = true;
+                }
+                catch (Exception ex) { Console.WriteLine("Ocurrió un error inesperado: " + ex.Message); }
+            }
             Console.WriteLine(@"
 
-        ....VOLVIENDO AL MENÚ....
+    ....VOLVIENDO AL MENÚ....
 
-            ");
+        ");
             Thread.Sleep(5000);
         }
+
         static void Ejercicio8()
         {
             Console.WriteLine(@"
-
-
-            ");
-
+    4.8. Escribe un programa que lea una palabra y determine si es 'si' o 'no'.
+    Si es 'si', determinar si es en minúscula o mayúscula, o combinación de ambas.
+    Sino imprimir “no es ni si, ni no”.
+        ");
+            bool validInput = false;
+            while (!validInput)
+            {
+                try
+                {
+                    Console.Write("Ingrese la palabra Si/No/SI/NO/si/no: ");
+                    string? word = Console.ReadLine();
+                    if (string.IsNullOrWhiteSpace(word)) throw new ArgumentNullException("", "No se ingresó ningún valor. Intente nuevamente.");
+                    if (word.ToLower() == "si")
+                        Console.WriteLine(word == "si" ? "Es 'si' en Minúscula" : (word == "SI" ? "Es 'SI' en Mayúscula" : "Es Si mixto"));
+                    else if (word.ToLower() == "no") Console.WriteLine("Ingresó no");
+                    else Console.WriteLine("No es ni si, ni no");
+                    validInput = true;
+                }
+                catch (Exception ex) { Console.WriteLine("Ocurrió un error inesperado: " + ex.Message); }
+            }
             Console.WriteLine(@"
 
-        ....VOLVIENDO AL MENÚ....
+    ....VOLVIENDO AL MENÚ....
 
-            ");
+        ");
             Thread.Sleep(5000);
         }
         static void Ejercicio9()
         {
             Console.WriteLine(@"
-
-
-            ");
-
+    4.9. Escribe un programa que lea una palabra y determine si es 'programar' o 'codificar'.
+    Si es 'programar', imprimir 'Sos programador'.
+    Si es 'codificar', imprimir 'Sos ¿codificador?'.
+    Si es otra cosa imprimir “Debiste ingresar una de esas. Chau!”.
+        ");
+            bool validInput = false;
+            while (!validInput)
+            {
+                try
+                {
+                    Console.Write("Te gusta programar o codificar?: ");
+                    string? word = Console.ReadLine();
+                    if (string.IsNullOrWhiteSpace(word)) throw new ArgumentNullException("", "No se ingresó ningún valor. Intente nuevamente.");
+                    word = word.ToLower();
+                    if (word == "programar") Console.WriteLine("Sos programador");
+                    else if (word == "codificar") Console.WriteLine("Sos ¿codificador?");
+                    else Console.WriteLine("Debiste ingresar una de esas. Chau!");
+                    validInput = true;
+                }
+                catch (Exception ex) { Console.WriteLine("Ocurrió un error inesperado: " + ex.Message); }
+            }
             Console.WriteLine(@"
 
-        ....VOLVIENDO AL MENÚ....
+    ....VOLVIENDO AL MENÚ....
 
-            ");
+        ");
             Thread.Sleep(5000);
         }
+
         static void Ejercicio10()
         {
             Console.WriteLine(@"
-
-
-            ");
-
+    4.10. Escribe un programa que lea el nivel de batería de un dispositivo y determine: 
+    • Si la batería es mayor o igual al 80%, imprimir 'Batería alta'.
+    • Si la batería es mayor o igual al 50% pero menor al 80%, imprimir 'Batería media'. 
+    • Si la batería es mayor o igual al 20% pero menor al 50%, imprimir 'Batería baja'. 
+    • Si la batería es menor al 20%, imprimir 'Batería crítica'.
+        ");
+            bool validInput = false;
+            while (!validInput)
+            {
+                try
+                {
+                    Console.Write("Indique el nivel de batería: ");
+                    string? input = Console.ReadLine();
+                    if (string.IsNullOrWhiteSpace(input)) throw new ArgumentNullException("", "No se ingresó ningún valor. Intente nuevamente.");
+                    if (!int.TryParse(input, out int battery)) throw new FormatException("La entrada no es un número válido. Intente nuevamente.");
+                    if (battery >= 80) Console.WriteLine("Batería alta");
+                    else if (battery >= 50) Console.WriteLine("Batería media");
+                    else if (battery >= 20) Console.WriteLine("Batería baja");
+                    else Console.WriteLine("Batería crítica");
+                    validInput = true;
+                }
+                catch (Exception ex) { Console.WriteLine("Ocurrió un error inesperado: " + ex.Message); }
+            }
             Console.WriteLine(@"
 
-        ....VOLVIENDO AL MENÚ....
+    ....VOLVIENDO AL MENÚ....
 
-            ");
+        ");
             Thread.Sleep(5000);
         }
         static void Ejercicio11()
         {
             Console.WriteLine(@"
-
-
-            ");
-
+    4.11. Escribe un programa que lea el puntaje de un examen y
+    determine si el estudiante aprobó o reprobó.
+    Si aprobó, determinar si obtuvo una mención honorifica (puntaje mayor a 90).
+        ");
+            bool validInput = false;
+            while (!validInput)
+            {
+                try
+                {
+                    Console.Write("Indique el puntaje del examen: ");
+                    string? input = Console.ReadLine();
+                    if (string.IsNullOrWhiteSpace(input)) throw new ArgumentNullException("", "No se ingresó ningún valor. Intente nuevamente.");
+                    if (!int.TryParse(input, out int score)) throw new FormatException("La entrada no es un número válido. Intente nuevamente.");
+                    if (score >= 60)
+                    {
+                        Console.Write("Aprobado");
+                        if (score > 90) Console.Write(" con mención honorífica");
+                        Console.WriteLine();
+                    }
+                    else Console.WriteLine("Reprobado");
+                    validInput = true;
+                }
+                catch (Exception ex) { Console.WriteLine("Ocurrió un error inesperado: " + ex.Message); }
+            }
             Console.WriteLine(@"
 
-        ....VOLVIENDO AL MENÚ....
+    ....VOLVIENDO AL MENÚ....
 
-            ");
+        ");
             Thread.Sleep(5000);
         }
-
         static void Ejercicio12()
         {
             Console.WriteLine(@"
-
-
-            ");
-
+    4.12. Escribe un programa que lea un año y determine si es bisiesto.
+    Un año es bisiesto si es divisible por 4, pero no por 100,
+    excepto que también sea divisible por 400.
+        ");
+            bool validInput = false;
+            while (!validInput)
+            {
+                try
+                {
+                    Console.Write("Indique el año: ");
+                    string? input = Console.ReadLine();
+                    if (string.IsNullOrWhiteSpace(input)) throw new ArgumentNullException("", "No se ingresó ningún valor. Intente nuevamente.");
+                    if (!int.TryParse(input, out int year)) throw new FormatException("La entrada no es un número válido. Intente nuevamente.");
+                    Console.WriteLine((year % 4 == 0 && year % 100 != 0) || year % 400 == 0 ? "Es un año bisiesto" : "No es un año bisiesto");
+                    validInput = true;
+                }
+                catch (Exception ex) { Console.WriteLine("Ocurrió un error inesperado: " + ex.Message); }
+            }
             Console.WriteLine(@"
 
-        ....VOLVIENDO AL MENÚ....
+    ....VOLVIENDO AL MENÚ....
 
-            ");
+        ");
             Thread.Sleep(5000);
         }
-
         static void Ejercicio13()
         {
             Console.WriteLine(@"
-
-
-            ");
-
+    4.13. Escribe un programa que lea la cantidad de días trabajados en un mes y
+    determine el salario mensual de una persona.
+    Si los días trabajados son mayores a 20, agregar un bono del 10% al salario base.
+    Si los días trabajados son mayores a 30, agregar otro bono del 10% al salario base.
+        ");
+            bool validInput = false;
+            while (!validInput)
+            {
+                try
+                {
+                    Console.Write("Indique los días trabajados: ");
+                    string? inputDays = Console.ReadLine();
+                    if (string.IsNullOrWhiteSpace(inputDays)) throw new ArgumentNullException("", "No se ingresó ningún valor. Intente nuevamente.");
+                    if (!int.TryParse(inputDays, out int daysWorked)) throw new FormatException("La entrada no es un número válido. Intente nuevamente.");
+                    Console.Write("Indique el salario base: ");
+                    string? inputSalary = Console.ReadLine();
+                    if (string.IsNullOrWhiteSpace(inputSalary)) throw new ArgumentNullException("", "No se ingresó ningún valor. Intente nuevamente.");
+                    if (!float.TryParse(inputSalary, out float baseSalary)) throw new FormatException("La entrada no es un número válido. Intente nuevamente.");
+                    if (daysWorked > 20) { baseSalary += baseSalary * 0.10f; if (daysWorked > 30) baseSalary += baseSalary * 0.10f; }
+                    Console.WriteLine($"El salario es: {baseSalary}");
+                    validInput = true;
+                }
+                catch (Exception ex) { Console.WriteLine("Ocurrió un error inesperado: " + ex.Message); }
+            }
             Console.WriteLine(@"
 
-        ....VOLVIENDO AL MENÚ....
+    ....VOLVIENDO AL MENÚ....
 
-            ");
+        ");
             Thread.Sleep(5000);
         }
-
         static void Ejercicio14()
         {
             Console.WriteLine(@"
-
-
-            ");
-
+    4.14. Escribe un programa que permita leer dos valores y compararlos.
+        ");
+            bool validInput = false;
+            while (!validInput)
+            {
+                try
+                {
+                    Console.Write("Ingrese el primer valor: ");
+                    string? input1 = Console.ReadLine();
+                    if (string.IsNullOrWhiteSpace(input1)) throw new ArgumentNullException("", "No se ingresó ningún valor. Intente nuevamente.");
+                    Console.Write("Ingrese el segundo valor: ");
+                    string? input2 = Console.ReadLine();
+                    if (string.IsNullOrWhiteSpace(input2)) throw new ArgumentNullException("", "No se ingresó ningún valor. Intente nuevamente.");
+                    if (!int.TryParse(input1, out int value1) || !int.TryParse(input2, out int value2))
+                        throw new FormatException("La entrada no es un número válido. Intente nuevamente.");
+                    if (value1 > value2) Console.WriteLine("El primer valor es mayor");
+                    else if (value1 < value2) Console.WriteLine("El segundo valor es mayor");
+                    else Console.WriteLine("Ambos valores son iguales");
+                    validInput = true;
+                }
+                catch (Exception ex) { Console.WriteLine("Ocurrió un error inesperado: " + ex.Message); }
+            }
             Console.WriteLine(@"
 
-        ....VOLVIENDO AL MENÚ....
+    ....VOLVIENDO AL MENÚ....
 
-            ");
+        ");
             Thread.Sleep(5000);
         }
-
         static void Ejercicio15()
         {
             Console.WriteLine(@"
-
-
-            ");
-
+    4.15. Escribe un programa que permita leer tres valores y
+    almacenarlos en las variables A, B y C respectivamente.
+    El algoritmo debe imprimir cual es el mayor y cuál es el menor.
+        ");
+            bool validInput = false;
+            while (!validInput)
+            {
+                try
+                {
+                    Console.Write("Ingrese el primer valor (A): ");
+                    string? inputA = Console.ReadLine();
+                    if (string.IsNullOrWhiteSpace(inputA)) throw new ArgumentNullException("", "No se ingresó ningún valor. Intente nuevamente.");
+                    Console.Write("Ingrese el segundo valor (B): ");
+                    string? inputB = Console.ReadLine();
+                    if (string.IsNullOrWhiteSpace(inputB)) throw new ArgumentNullException("", "No se ingresó ningún valor. Intente nuevamente.");
+                    Console.Write("Ingrese el tercer valor (C): ");
+                    string? inputC = Console.ReadLine();
+                    if (string.IsNullOrWhiteSpace(inputC)) throw new ArgumentNullException("", "No se ingresó ningún valor. Intente nuevamente.");
+                    if (!int.TryParse(inputA, out int a) || !int.TryParse(inputB, out int b) || !int.TryParse(inputC, out int c))
+                        throw new FormatException("La entrada no es un número válido. Intente nuevamente.");
+                    Console.WriteLine($"El mayor es: {Math.Max(a, Math.Max(b, c))}");
+                    Console.WriteLine($"El menor es: {Math.Min(a, Math.Min(b, c))}");
+                    validInput = true;
+                }
+                catch (Exception ex) { Console.WriteLine("Ocurrió un error inesperado: " + ex.Message); }
+            }
             Console.WriteLine(@"
 
-        ....VOLVIENDO AL MENÚ....
+    ....VOLVIENDO AL MENÚ....
 
-            ");
+        ");
             Thread.Sleep(5000);
         }
         static void Ejercicio16()
         {
             Console.WriteLine(@"
-
-
-            ");
-
+    4.16. Escribe un programa que lea una palabra y determine si es 'Java', 'Python', 'C#', 'JavaScript'.
+    Si es 'Java', imprimir 'Lenguaje robusto'.
+    Si es 'Python', 'Lenguaje versátil'.
+    Si es 'C#', 'Es el Java de Microsoft'.
+    Si es 'JavaScript', 'Es muy bueno para Web'.
+    Y si es otro, 'De ese no puedo opinar'. (considerar las mayúsculas y minúsculas).
+        ");
+            bool validInput = false;
+            while (!validInput)
+            {
+                try
+                {
+                    Console.Write("Ingrese un lenguaje de programación: ");
+                    string? language = Console.ReadLine();
+                    if (string.IsNullOrWhiteSpace(language)) throw new ArgumentNullException("", "No se ingresó ningún valor. Intente nuevamente.");
+                    language = language.ToLower();
+                    if (language == "java") Console.WriteLine("Lenguaje robusto");
+                    else if (language == "python") Console.WriteLine("Lenguaje versátil");
+                    else if (language == "c#") Console.WriteLine("Es el Java de Microsoft");
+                    else if (language == "javascript") Console.WriteLine("Es muy bueno para Web");
+                    else Console.WriteLine("De ese no puedo opinar");
+                    validInput = true;
+                }
+                catch (Exception ex) { Console.WriteLine("Ocurrió un error inesperado: " + ex.Message); }
+            }
             Console.WriteLine(@"
 
-        ....VOLVIENDO AL MENÚ....
+    ....VOLVIENDO AL MENÚ....
 
         ");
             Thread.Sleep(5000);
@@ -399,337 +642,180 @@ namespace Menu_Principal
         static void Ejercicio17()
         {
             Console.WriteLine(@"
-
-
-            ");
-
+    4.17. Escribe un programa que lea una cadena de texto y
+    pida ingresar si es 'izquierda' o 'derecha'.
+    Si es 'izquierda', imprimir 'Gira a la izquierda'.
+    Si es 'derecha', imprimir 'Gira a la derecha'.
+    Sino indicar 'Debió ingresar una de esas -_-'. (considerar las mayúsculas y minúsculas).
+        ");
+            bool validInput = false;
+            while (!validInput)
+            {
+                try
+                {
+                    Console.Write("Ingrese 'izquierda' o 'derecha': ");
+                    string? direction = Console.ReadLine();
+                    if (string.IsNullOrWhiteSpace(direction)) throw new ArgumentNullException("", "No se ingresó ningún valor. Intente nuevamente.");
+                    direction = direction.ToLower();
+                    if (direction == "izquierda") Console.WriteLine("Gira a la izquierda");
+                    else if (direction == "derecha") Console.WriteLine("Gira a la derecha");
+                    else Console.WriteLine("Debió ingresar una de esas -_-");
+                    validInput = true;
+                }
+                catch (Exception ex) { Console.WriteLine("Ocurrió un error inesperado: " + ex.Message); }
+            }
             Console.WriteLine(@"
 
-        ....VOLVIENDO AL MENÚ....
+    ....VOLVIENDO AL MENÚ....
 
         ");
             Thread.Sleep(5000);
         }
+
         static void Ejercicio18()
         {
             Console.WriteLine(@"
+    4.18. Escribe un programa que active un switch ingresando
+    la palabra 'ON' y lo apague con 'OFF'. (considerar las mayúsculas y minúsculas).
+    Si ingresa 'ON', poner el switch en true y mostrar 'Ha sido encendido'.
+    Si ingresa 'OFF' poner el switch en false y mostrar 'Ha sido apagado'.
+    Sino mostrar 'No se indicó, por las dudas permanecerá apagado'.
+        ");
 
-
-            ");
-
+            bool validInput = false;
+            bool switchState = false;
+            while (!validInput)
+            {
+                try
+                {
+                    Console.Write("Ingrese 'ON' o 'OFF' para activar o desactivar el switch: ");
+                    string? input = Console.ReadLine();
+                    if (string.IsNullOrWhiteSpace(input)) throw new ArgumentNullException("", "No se ingresó ningún valor. Intente nuevamente.");
+                    input = input.ToUpper();
+                    if (input == "ON")
+                    {
+                        switchState = true;
+                        Console.WriteLine("Ha sido encendido");
+                    }
+                    else if (input == "OFF")
+                    {
+                        switchState = false;
+                        Console.WriteLine("Ha sido apagado");
+                    }
+                    else
+                    {
+                        Console.WriteLine("No se indicó, por las dudas permanecerá apagado");
+                    }
+                    validInput = true;
+                }
+                catch (Exception ex) { Console.WriteLine("Ocurrió un error inesperado: " + ex.Message); }
+            }
             Console.WriteLine(@"
 
-        ....VOLVIENDO AL MENÚ....
+    ....VOLVIENDO AL MENÚ....
 
         ");
             Thread.Sleep(5000);
         }
+
         static void Ejercicio19()
         {
             Console.WriteLine(@"
+    4.19. Escribir un programa que pida ingresar tres números.
+    Indicar si los 3 son impares o los 3 son pares.
+    Indicar si hay 2 impares y 1 par o viceversa.
+        ");
 
+            bool validInput = false;
+            while (!validInput)
+            {
+                try
+                {
+                    Console.Write("Ingrese el primer número: ");
+                    string? input1 = Console.ReadLine();
+                    if (string.IsNullOrWhiteSpace(input1)) throw new ArgumentNullException("", "No se ingresó ningún valor. Intente nuevamente.");
+                    Console.Write("Ingrese el segundo número: ");
+                    string? input2 = Console.ReadLine();
+                    if (string.IsNullOrWhiteSpace(input2)) throw new ArgumentNullException("", "No se ingresó ningún valor. Intente nuevamente.");
+                    Console.Write("Ingrese el tercer número: ");
+                    string? input3 = Console.ReadLine();
+                    if (string.IsNullOrWhiteSpace(input3)) throw new ArgumentNullException("", "No se ingresó ningún valor. Intente nuevamente.");
+                    if (!int.TryParse(input1, out int num1) || !int.TryParse(input2, out int num2) || !int.TryParse(input3, out int num3))
+                        throw new FormatException("La entrada no es un número válido. Intente nuevamente.");
+                    int count1 = 0, count2 = 0; // count1: impares, count2: pares
+                    if (num1 % 2 == 0) count2++; else count1++;
+                    if (num2 % 2 == 0) count2++; else count1++;
+                    if (num3 % 2 == 0) count2++; else count1++;
+                    if (count2 == 3) Console.WriteLine("Los 3 son pares");
+                    else if (count1 == 3) Console.WriteLine("Los 3 son impares");
+                    else if (count1 == 2 && count2 == 1) Console.WriteLine("Hay 2 impares y 1 par");
+                    else Console.WriteLine("Hay 2 pares y 1 impar");
 
-            ");
-
+                    validInput = true;
+                }
+                catch (Exception ex) { Console.WriteLine("Ocurrió un error inesperado: " + ex.Message); }
+            }
             Console.WriteLine(@"
 
-        ....VOLVIENDO AL MENÚ....
+    ....VOLVIENDO AL MENÚ....
 
         ");
             Thread.Sleep(5000);
         }
+
         static void Ejercicio20()
         {
             Console.WriteLine(@"
+    4.20. Escribir un programa que pida ingresar tres números.
+    Indicar si los 3 son impares o los 3 son pares.
+    Indicar si hay 2 impares y 1 par o viceversa.
+    Y, además, indicar si los 3 son positivos o negativos o si son 2 positivos y 1 negativo o viceversa.
+        ");
 
-
-            ");
-
+            bool validInput = false;
+            while (!validInput)
+            {
+                try
+                {
+                    Console.Write("Ingrese el primer número: ");
+                    string? input1 = Console.ReadLine();
+                    if (string.IsNullOrWhiteSpace(input1)) throw new ArgumentNullException("", "No se ingresó ningún valor. Intente nuevamente.");
+                    Console.Write("Ingrese el segundo número: ");
+                    string? input2 = Console.ReadLine();
+                    if (string.IsNullOrWhiteSpace(input2)) throw new ArgumentNullException("", "No se ingresó ningún valor. Intente nuevamente.");
+                    Console.Write("Ingrese el tercer número: ");
+                    string? input3 = Console.ReadLine();
+                    if (string.IsNullOrWhiteSpace(input3)) throw new ArgumentNullException("", "No se ingresó ningún valor. Intente nuevamente.");
+                    if (!int.TryParse(input1, out int num1) || !int.TryParse(input2, out int num2) || !int.TryParse(input3, out int num3))
+                        throw new FormatException("La entrada no es un número válido. Intente nuevamente.");
+                    int count1 = 0, count2 = 0;
+                    int positiveCount = 0, negativeCount = 0;
+                    if (num1 % 2 == 0) count2++; else count1++;
+                    if (num2 % 2 == 0) count2++; else count1++;
+                    if (num3 % 2 == 0) count2++; else count1++;
+                    if (num1 > 0) positiveCount++; else negativeCount++;
+                    if (num2 > 0) positiveCount++; else negativeCount++;
+                    if (num3 > 0) positiveCount++; else negativeCount++;
+                    if (count2 == 3) Console.WriteLine("Los 3 son pares");
+                    else if (count1 == 3) Console.WriteLine("Los 3 son impares");
+                    else if (count1 == 2 && count2 == 1) Console.WriteLine("Hay 2 impares y 1 par");
+                    else Console.WriteLine("Hay 2 pares y 1 impar");
+                    if (positiveCount == 3) Console.WriteLine("Los 3 son positivos");
+                    else if (negativeCount == 3) Console.WriteLine("Los 3 son negativos");
+                    else if (positiveCount == 2 && negativeCount == 1) Console.WriteLine("Hay 2 positivos y 1 negativo");
+                    else Console.WriteLine("Hay 2 negativos y 1 positivo");
+                    validInput = true;
+                }
+                catch (Exception ex) { Console.WriteLine("Ocurrió un error inesperado: " + ex.Message); }
+            }
             Console.WriteLine(@"
 
-        ....VOLVIENDO AL MENÚ....
+    ....VOLVIENDO AL MENÚ....
 
         ");
             Thread.Sleep(5000);
         }
+
     }
 }
 
-/*
-
-
-
-
-
-
-
-//4.4.	Escribe un programa que lea un número y determine si es positivo, negativo o cero.
-//Si es positivo, determinar si es par o impar.
-Console.Write("Ingrese un numero: ");
-int number = int.Parse(Console.ReadLine());
-if (number > 0)
-{
-    Console.Write("Es Positivo");
-    if (number % 2 == 0) Console.WriteLine(" y es par...");
-    else Console.WriteLine(" y es impar...");
-}
-else if (number < 0) Console.WriteLine("Es Negativo");
-else Console.WriteLine("Es cero");
-Console.ReadKey();
-Console.Clear();
-
-//4.5.	Escribe un programa que lea una letra y
-//determine si es una vocal o consonante,y si es mayúscula o minúscula.
-Console.Write("Ingrese una letra: ");
-char letter = Console.ReadKey().KeyChar;
-if (char.IsLetter(letter))
-{
-    if (letter == 'a' || letter == 'e' || letter == 'i' || letter == 'o' || letter == 'u') Console.WriteLine("Es una Vocal Minúscula");
-    else if (letter == 'A' || letter == 'E' || letter == 'I' || letter == 'O' || letter == 'U') Console.WriteLine("Es una Vocal Mayúscula");
-    else if (char.IsUpper(letter)) Console.WriteLine("Es una Consonante Mayúscula");
-    else Console.WriteLine("Es una Consonante Minúscula");
-}
-else Console.WriteLine("No es una letra");
-Console.ReadKey();
-Console.Clear();
-
-//4.6.	Escribe un programa que lea el precio de un producto y
-//determine si es caro, barato o regular. Considerar: 
-//•	Barato: menos de 20
-//•	Regular: entre 20 y 50
-//•	Caro: más de 50
-Console.WriteLine("Ingrese el precio del producto:");
-float price = float.Parse(Console.ReadLine());
-if (price < 20) Console.WriteLine("Barato");
-else if (price <= 50) Console.WriteLine("Regular");
-else Console.WriteLine("Caro");
-Console.ReadKey();
-Console.Clear();
-
-//4.7.	Escribe un programa que lea tres números e imprima el mayor de ellos.
-Console.WriteLine("Ingrese tres números:");
-int num1 = int.Parse(Console.ReadLine());
-int num2 = int.Parse(Console.ReadLine());
-int num3 = int.Parse(Console.ReadLine());
-if (num1 >= num2 && num1 >= num3) Console.WriteLine($"El mayor es: {num1}");
-else if (num2 >= num1 && num2 >= num3) Console.WriteLine($"El mayor es: {num2}");
-else Console.WriteLine($"El mayor es: {num3}");
-Console.ReadKey();
-Console.Clear();
-
-//4.8.	Escribe un programa que lea una palabra y determine si es "si" o "no".
-//Si es "si", determinar si es en minúscula o mayúscula, o combinación de ambas.
-//Sino imprimir “no es ni si, ni no”.
-Console.Write("Ingrese la palabra Si/No/SI/NO/si/no: ");
-string? word = Console.ReadLine();
-if (word.ToLower() == "si")
-{
-    if (word == "si") Console.WriteLine("Es 'si' en Minúscula");
-    else if (word == "SI") Console.WriteLine("Es 'SI' en Mayúscula");
-    else Console.WriteLine("Es Si mixto");
-}
-else if (word.ToLower() == "no") Console.WriteLine("Ingresó no");
-else Console.WriteLine("No es ni si, ni no");
-Console.ReadKey();
-Console.Clear();
-
-//4.9.	Escribe un programa que lea una palabra y determine si es "programar" o "codificar".
-//Si es "programar", imprimir "Sos programador".
-//Si es "codificar", imprimir "Sos ¿codificador?".
-//Si es otra cosa imprimir “Debiste ingresar una de esas. Chau!”
-Console.Write("Te gusta programar o codificar?: ");
-word = Console.ReadLine().ToLower();
-if (word == "programar") Console.WriteLine("Sos programador");
-else if (word == "codificar") Console.WriteLine("Sos ¿codificador?");
-else Console.WriteLine("Debiste ingresar una de esas. Chau!");
-Console.ReadKey();
-Console.Clear();
-
-//4.10.	Escribe un programa que lea el nivel de bateria de un dispositivo y determine: 
-//•	Si la bateria es mayor o igual al 80%, imprimir "Bateria alta".
-//•	Si la bateria es mayor o igual al 50% pero menor al 80%, imprimir "Bateria media". 
-//•	Si la bateria es mayor o igual al 20% pero menor al 50%, imprimir "Bateria baja". 
-//•	Si la bateria es menor al 20%, imprimir "Bateria critica".
-Console.Write("Indique el nivel de batería: ");
-int battery = int.Parse(Console.ReadLine());
-if (battery >= 80) Console.WriteLine("Batería alta");
-else if (battery >= 50) Console.WriteLine("Batería media");
-else if (battery >= 20) Console.WriteLine("Batería baja");
-else Console.WriteLine("Batería crítica");
-Console.ReadKey();
-Console.Clear();
-
-//4.11.	Escribe un programa que lea el puntaje de un examen y
-//determine si el estudiante aprobó o reprobó.
-//Si aprobó, determinar si obtuvo una mención honorifica (puntaje mayor a 90).
-Console.Write("Indique el puntaje del examen: ");
-int score = int.Parse(Console.ReadLine());
-if (score >= 60)
-{
-    Console.WriteLine("Aprobado");
-    if (score > 90) Console.Write(" con mención honorífica");
-}
-else Console.WriteLine("Reprobado");
-Console.ReadKey();
-Console.Clear();
-
-//4.12.	Escribe un programa que lea un año y determine si es bisiesto.
-//Un año es bisiesto si es divisible por 4, pero no por 100,
-//excepto que también sea divisible por 400
-Console.Write("Indique el año: ");
-int year = int.Parse(Console.ReadLine());
-if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) Console.WriteLine("Es un año bisiesto");
-else Console.WriteLine("No es un año bisiesto");
-Console.ReadKey();
-Console.Clear();
-
-//4.13.	Escribe un programa que lea la cantidad de dias trabajados en un mes y
-//determine el salario mensual de una persona.
-//Si los dias trabajados son mayores a 20, agregar un bono del 10% al salario base.
-//Si los dias trabajados son mayores a 30, agregar otro bono del 10% al salario base.
-Console.Write("Indique los días trabajados: ");
-int daysWorked = int.Parse(Console.ReadLine());
-Console.Write("Indique el salario base: ");
-float baseSalary = int.Parse(Console.ReadLine());
-if (daysWorked > 20)
-{
-    baseSalary += baseSalary * 0.10f;
-    if (daysWorked > 30) baseSalary += baseSalary * 0.10f;
-}
-Console.WriteLine($"El salario es: {baseSalary}");
-Console.ReadKey();
-Console.Clear();
-
-//4.14.	Escribe un programa que permita leer dos valores y compararlos.
-Console.Write("Ingrese el primer valor: ");
-int value1 = int.Parse(Console.ReadLine());
-Console.Write("Ingrese el segundo valor: ");
-int value2 = int.Parse(Console.ReadLine());
-if (value1 > value2) Console.WriteLine("El primer valor es mayor");
-else if (value1 < value2) Console.WriteLine("El segundo valor es mayor");
-else Console.WriteLine("Ambos valores son iguales");
-Console.ReadKey();
-Console.Clear();
-
-//4.15.	Escribe un programa que permita leer tres valores y
-//almacenarlos en las variables A, B y C respectivamente.
-//El algoritmo debe imprimir cual es el mayor y cuál es el menor.
-Console.Write("Ingrese el primer valor (A): ");
-int a = int.Parse(Console.ReadLine());
-Console.Write("Ingrese el segundo valor (B): ");
-int b = int.Parse(Console.ReadLine());
-Console.Write("Ingrese el tercer valor (C): ");
-int c = int.Parse(Console.ReadLine());
-if (a > b && a > c) Console.WriteLine($"El mayor es: {a}");
-else if (b > a && b > c) Console.WriteLine($"El mayor es: {b}");
-else Console.WriteLine($"El mayor es: {c}");
-if (a < b && a < c) Console.WriteLine($"El menor es: {a}");
-else if (b < a && b < c) Console.WriteLine($"El menor es: {b}");
-else Console.WriteLine($"El menor es: {c}");
-Console.ReadKey();
-Console.Clear();
-
-//4.16.	Escribe un programa que lea una palabra y determine si es "Java", "Python", “C#”, “JavaScript”.
-//Si es "Java", imprimir "Lenguaje robusto".
-//Si es "Python", "Lenguaje versátil".
-//Si es “C#”, “Es el Java de Microsoft”.
-//Si es “JavaScript”, “Es muy bueno para Web”.
-//Y si es otro, “De ese no puedo opinar”. (considerar las mayúsculas y minúsculas).
-Console.Write("Ingrese un lenguaje de programación: ");
-string? language = Console.ReadLine().ToLower();
-if (language == "java") Console.WriteLine("Lenguaje robusto");
-else if (language == "python") Console.WriteLine("Lenguaje versátil");
-else if (language == "c#") Console.WriteLine("Es el Java de Microsoft");
-else if (language == "javascript") Console.WriteLine("Es muy bueno para Web");
-else Console.WriteLine("De ese no puedo opinar");
-Console.ReadKey();
-Console.Clear();
-
-//4.17.	Escribe un programa que lea una cadena de texto y
-//pida ingresar si es "izquierda" o "derecha".
-//Si es "izquierda", imprimir "Gira a la izquierda".
-//Si es "derecha", imprimir "Gira a la derecha".
-//Sino indicar “Debió ingresar una de esas -_-”. (considerar las mayúsculas y minúsculas).
-Console.Write("Ingrese 'izquierda' o 'derecha': ");
-string? direction = Console.ReadLine().ToLower();
-if (direction == "izquierda") Console.WriteLine("Gira a la izquierda");
-else if (direction == "derecha") Console.WriteLine("Gira a la derecha");
-else Console.WriteLine("Debió ingresar una de esas -_-");
-Console.ReadKey();
-Console.Clear();
-
-//4.18.	Escribe un programa que active un switch ingresando
-//la palabra “ON” y lo apague con “OFF”. (considerar las mayúsculas y minúsculas).
-//Si ingresa “ON”, poner el switch en true y mostrar “Ha sido encendido”.
-//Si ingresa “OFF” poner el switch en true y mostrar “Ha sido apagado”.
-//Sino mostrar “No se indicó, por las dudas permanecerá apagado”
-Console.Write("Ingrese 'ON' o 'OFF' para activar o desactivar el switch: ");
-string input = Console.ReadLine().ToUpper();
-bool switchState;
-if (input == "ON")
-{
-    switchState = true;
-    Console.WriteLine("Ha sido encendido");
-}
-else if (input == "OFF")
-{
-    switchState = false;
-    Console.WriteLine("Ha sido apagado");
-}
-else
-{
-    switchState = false;
-    Console.WriteLine("No se indicó, por las dudas permanecerá apagado");
-}
-Console.ReadKey();
-Console.Clear();
-
-//4.19.	Escribir un programa que pida ingresar tres números.
-//Indicar si los 3 son impares o los 3 son pares.
-//Indicar si hay 2 impares y 1 par o viceversa.
-Console.Write("Ingrese el primer número: ");
-num1 = int.Parse(Console.ReadLine());
-Console.Write("Ingrese el segundo número: ");
-num2 = int.Parse(Console.ReadLine());
-Console.Write("Ingrese el tercer número: ");
-num3 = int.Parse(Console.ReadLine());
-int count1 = 0, count2 = 0;
-if (num1 % 2 == 0) count2++; else count1++;
-if (num2 % 2 == 0) count2++; else count1++;
-if (num3 % 2 == 0) count2++; else count1++;
-if (count2 == 3) Console.WriteLine("Los 3 son pares");
-else if (count1 == 3) Console.WriteLine("Los 3 son impares");
-else if (count1 == 2 && count2 == 1) Console.WriteLine("Hay 2 impares y 1 par");
-else Console.WriteLine("Hay 2 pares y 1 impar");
-Console.ReadKey();
-Console.Clear();
-
-//4.20.	Escribir un programa que pida ingresar tres números.
-//Indicar si los 3 son impares o los 3 son pares.
-//Indicar si hay 2 impares y 1 par o viceversa.
-//Y, además, indicar si los 3 son positivos o negativos o si son 2 positivos y 1 negativo o viceversa.
-Console.Write("Ingrese el primer número: ");
-num1 = int.Parse(Console.ReadLine());
-Console.Write("Ingrese el segundo número: ");
-num2 = int.Parse(Console.ReadLine());
-Console.Write("Ingrese el tercer número: ");
-num3 = int.Parse(Console.ReadLine());
-count1 = 0; 
-count2 = 0; 
-int positiveCount = 0, negativeCount = 0;
-if (num1 % 2 == 0) count2++; else count1++;
-if (num2 % 2 == 0) count2++; else count1++;
-if (num3 % 2 == 0) count2++; else count1++;
-if (num1 > 0) positiveCount++; else negativeCount++;
-if (num2 > 0) positiveCount++; else negativeCount++;
-if (num3 > 0) positiveCount++; else negativeCount++;
-if (count2 == 3) Console.WriteLine("Los 3 son pares");
-else if (count1 == 3) Console.WriteLine("Los 3 son impares");
-else if (count1 == 2 && count2 == 1) Console.WriteLine("Hay 2 impares y 1 par");
-else Console.WriteLine("Hay 2 pares y 1 impar");
-if (positiveCount == 3) Console.WriteLine("Los 3 son positivos");
-else if (negativeCount == 3) Console.WriteLine("Los son negtivos");
-else if (positiveCount == 2 && negativeCount == 1) Console.WriteLine("Hay 2 positivos y 1 negativo");
-else Console.WriteLine("Hay 2 negativos y 1 positivo");
-Console.ReadKey();
-Console.Clear();*/
