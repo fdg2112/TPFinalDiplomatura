@@ -19,7 +19,6 @@ while (!stop)
         Console.Write("   Ingrese la opción del ejercicio a ejecutar: ");
         string? opcion = Console.ReadLine();
         if (opcion == null) opcion = "";
-
         switch (opcion.ToUpper())
         {
             case "1":
